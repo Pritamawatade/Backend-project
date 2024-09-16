@@ -103,4 +103,16 @@ const hospitalSchema = new mongoose.Schema(
 
 export const Hospital = mongoose.model('Hospital', hospitalSchema);
 
-2 
+=============== How to setup the professional backend project =====
+
+so create a new project and use npm init it will create the package.json file and after that we need to create the 
+public and src folder in that folder. in src folder we keep the files of source of the project and in public folder we keep the static files. 
+After that create the .env file to keep the confidential data of the project. 
+
+  install the nodemon package as a dev dependency becouse it will restart the server automatically when you make any changes in the code.
+  you can install it like this 
+  npm i -D nodemon
+  after that make some change in the package.json file  : 
+  "scripts": {
+    "dev": "nodemon /src/index.js"
+  },
