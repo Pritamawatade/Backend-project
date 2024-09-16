@@ -121,3 +121,26 @@ After that create the .env file to keep the confidential data of the project.
   it will help us to have an common code formator between teams so that it does'nt give an small error aftet that we 
   need to create the .prettierrc and .prettieringnore files and add the appropriate code in it.
   
+  =========== How to connet databse in MERN ============
+
+  So to connect that mongoDB database we need to go to the mongoDB atlas page it is free service from the mongoDB to get access to the database.
+  After that create a account on that website and create your cluster you can do it all that for free. 
+
+  2 personal things to consider while dealing with databses : 
+    always wrap the database code with try catch or promises 
+    and always use asnync becouse your databse is always in another continent.
+    
+======================Custom API respoce and error handling ===========
+so first of all we need to install some library for that first is 
+cors and second is cookie-parser 
+and then in express app we need to import that library and use it like this : 
+    const app = express();
+    app.use(cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true
+
+    }))
+
+    app.use(express.json({limit: "16kb"}))
+
+middleware is nothing but an falg which we is present in the url to check some data. 
