@@ -1,0 +1,106 @@
+BACKEND NOTES ---
+
+we need node js to get started wiht bakend 
+firt on an empyty folder we need to run  'npm init' command
+by doing that you will get the package.json file in thta file under scipts you can give your own commnds like this:
+"start": "node index.js"
+
+
+ with express it assign a virtual port on your machine to the 
+ express port.
+
+ in the express we const app = express();
+
+ with app you can use various methods on the app like get , listen 
+
+ after that we need to install the dotenv package and create the .env
+  file becouse to put you app into the production we need to do that.
+
+  .env file will replace the port with available port on the    
+  server
+
+## vid 2
+  now : you can use the digitaloccean to host this app onto the production
+  just upload the git repo in the digitaloccean to host this app
+
+  
+   CORS error : it denies the access to the react website
+
+   to handle that you can install npm cors package
+   
+proxy : is the way to stadarization of the url 
+
+
+you can add this text in your vite.config file and it will append the path to starting of the API
+
+  server:{
+    proxy:{
+      '/api':'http://localhost:3000'
+    },
+  },
+
+npm run build : WIht these commond a satic version of the you r react app will 
+build with html , css , js. dist folder will contian all the html and css and js file. 
+and you can use app.use(express.static('dist))
+  
+but you have to put your dist folder into the backend folder and then you can 
+use  app.use(express.static('dist)) this code in server.js file to give a static version of react app 
+to backend. 
+
+{But this all considerred a bad practise to do all these}
+ 
+
+// moon modler is the tool which is used to for data modling  
+#link : codesnadbox , github codespace , stackblitz
+
+when passing the schema to the #mogoose.model("User" , userScema)
+At time of of the storing the value in the mogoDB it store as the pural means User became Users 's' is attched to the every database name when passsign it 
+
+
+#mogoose.model("User" , userScema)
+
+here User is the database name and userScema is the schema on which is the table in gonna form 
+
+Users became users  in the actual mongDB database
+
+
+======================This is the example of the data modling of database in the mongoose 
+
+import mongoose from 'mongoose';
+
+const hospitalSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    addressLine1: {
+      type: String,
+      required: true,
+    },
+
+    addressLine2: {
+      type: String,
+    },
+
+    city: {
+      type: String,
+      required: true,
+    },
+
+    pincode: {
+      type: String,
+      required: true,
+    },
+    specializedIn: [
+      {
+        type: String,
+      },
+    ],
+  },
+  { timesstamps: true }
+);
+
+export const Hospital = mongoose.model('Hospital', hospitalSchema);
+
+2 
