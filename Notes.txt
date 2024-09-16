@@ -116,3 +116,8 @@ After that create the .env file to keep the confidential data of the project.
   "scripts": {
     "dev": "nodemon /src/index.js"
   },
+  
+  after that we have install the prettier package as the dev dependency like this  : npm i -D prettier 
+  it will help us to have an common code formator between teams so that it does'nt give an small error aftet that we 
+  need to create the .prettierrc and .prettieringnore files and add the appropriate code in it.
+  
