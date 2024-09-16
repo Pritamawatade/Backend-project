@@ -3,21 +3,29 @@ import connectDB from "./db/index.js";
 
 import dotenv from 'dotenv';
 
-
 dotenv.config({ path: './env' }); // this is a newer syntax
 
 
 connectDB()
+.then(()=>{
 
+    console.log(`\n MongoDB Connected : ${mongoose.connection.host}`);
 
-
-
-
-
-
-
-
-
+    app.on("error,",(error)=>{
+        console.log('ERROR : ', error);
+        
+    })
+    // use your app here      // 8000 means if env variable is not present use 8000 as default port
+    app.listen(process.env.PORT || 8000,() =>{
+        console.log('Example app listening on port! : ', process.env.PORT);
+        
+    })
+})
+.catch((err)=>{
+    console.error("Connection of mongodb failed",err);
+    process.exit(1);
+ 
+})
 
 
 
