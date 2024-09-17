@@ -153,3 +153,20 @@ middleware is nothing but an falg which we is present in the url to check some d
 
   you can install these library very easiliy by npmjs
   
+  ================================== How to upload files in the backend ============
+
+  so in the backend we need to use multer package to upload files. And a third package called cloudinary to upload files on cloudinary.
+   we can install both them with the npm commond , 
+   and after that we need to import the cloudinary and the fs package to upload file , fs is a default library in node js . 
+
+   ===========logic building register model =======
+    in this we are going to build the register model of the user which included the getting the 
+    information of the user like the name , email , passwor and more. 
+    and store the neccesory images into the cloudinary and the rest of the data will store in to the 
+    mogoDB database . we are going to use the most of the methods which we have build at a time of 
+    setup of the project . 
+
+    first of all most important things is to know the methods  and the return type of the method
+    which is provided by the cloudinary and the monggose package . 
+    and use that method to get the result you want to.
+    

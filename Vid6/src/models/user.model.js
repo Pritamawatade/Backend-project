@@ -43,8 +43,8 @@ const userSchema = new Schema(
         ],
         
         password:{
-            typeof: String,
-            required: [true,"Password is required"],
+            type: String,
+            required: [true,'Password is required']
         },
 
         refreshToken:{
@@ -59,7 +59,7 @@ const userSchema = new Schema(
 
 userSchema.pre('save', async function(next){
     if(!this.Modified("password")) return next();
-    this.password =  bcrypt.hash(this.password, 10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 userSchema.methods.isPasswordCorrect = async function(password){
@@ -92,4 +92,4 @@ userSchema.methods.generateRefreshToken = function(){
         }
     )
 }
-export const User = mongoose.model('User', userSchema)
+export const User = mongoose.model("User", userSchema)
