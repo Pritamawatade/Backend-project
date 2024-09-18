@@ -170,3 +170,9 @@ middleware is nothing but an falg which we is present in the url to check some d
     which is provided by the cloudinary and the monggose package . 
     and use that method to get the result you want to.
     
+    =========== Access refresh token , middleware and cookies in the backend ============
+    you can use _ as a placeholder for a paramter in the function instead of res if the 
+    value of the paramter is not used in the function. 
+
+    discover more methods provided by the moongoose and the jwt. 
+    
