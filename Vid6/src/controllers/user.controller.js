@@ -176,32 +176,40 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
   if(!incomingRefreshToken){
     throw new ApiError(401, "No refresh token provided")
   }
-
-  const decondedToken = jwt.verify( incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET)
+try {
   
-  const user = await User.findById(decondedToken?._id)
-
-  if(!user){
-    throw new ApiError(401, "Invalid refresh Token")
-  }
-
-  if(incomingRefreshToken !== user?.refreshToken){
-    throw new ApiError(401, "Invalid refresh Token or token is expired")
-  }
-
-  const options = {
-    httpOnly: true,
-    secure: true,
+    const decondedToken = jwt.verify( incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET)
+    
+    const user = await User.findById(decondedToken?._id)
   
-  }
-// 25 min vid access and refreshtokrn
-  const {accessToken, refreshToken} = await generateAccessAndrefreshToken(user._id)
-  return res
-  .status(200)
-  .cookie("accessToken", accessToken, options) 
-  .cookie("refreshToken", refreshToken, options)
-  .json(
-    new ApiResponse(200, {}, "Access token refreshed successfully")
-  )
+    if(!user){
+      throw new ApiError(401, "Invalid refresh Token")
+    }
+  
+    if(incomingRefreshToken !== user?.refreshToken){
+      throw new ApiError(401, "Invalid refresh Token or token is expired")
+    }
+  
+    const options = {
+      httpOnly: true,
+      secure: true,
+    
+    }
+  // 25 min vid access and refreshtokrn
+    const {accessToken, newRefreshToken} = await generateAccessAndrefreshToken(user._id)
+    return res
+    .status(200)
+    .cookie("accessToken", accessToken, options) 
+    .cookie("refreshToken", newRefreshToken, options)
+    .json(
+      new ApiResponse(200, {
+        accessToken, 
+        refreshToken: newRefreshToken
+      }, 
+      "Access token refreshed successfully")
+    )
+} catch (error) {
+  throw new ApiError(401, error?.message || "Invalid refresh token")
+}
 })
-export { registerUser, loginUser, logoutUser };
+export { registerUser, loginUser, logoutUser, refreshAccessToken };
